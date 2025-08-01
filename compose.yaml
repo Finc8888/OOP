@@ -1,0 +1,14 @@
+services:
+  oop-frontend:
+    image: oop-frontend
+    container_name: oop-frontend-c
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+      args:
+        - HOST_USER=${USER:?USER environment variable must be set}
+        - HOST_UID=${UID:?UID environment variable must be set}
+    user: ${UID}
+    working_dir: /app
+    volumes:
+      - ./:/app
